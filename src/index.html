@@ -1,0 +1,17 @@
+---
+layout: default
+---
+<div class="px-4 mt-8">
+  <p class="text-center">
+    Creating your dreams into an art piece.
+  </p>
+  <p class="text-center">
+    Commissions are open at $25 and above!!
+  </p>
+</div>
+
+<div class=" my-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+  {% for pic in pics %}
+  <div class="my-auto">{% image pic.1.pic, pic.1.alt, "50ve 200ve 300ve" %}</div>
+  {% endfor %}
+</div>
