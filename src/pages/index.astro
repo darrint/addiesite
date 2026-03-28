@@ -15,7 +15,11 @@ const sorted = artworks.sort((a, b) => a.data.order - b.data.order);
 
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
     {sorted.map((art) => (
-      <figure class="overflow-hidden rounded shadow">
+      <figure
+        class="overflow-hidden rounded shadow cursor-pointer hover:shadow-lg transition-shadow"
+        data-lightbox={art.data.image}
+        data-alt={art.data.alt}
+      >
         <img
           src={art.data.image}
           alt={art.data.alt}
