@@ -6,7 +6,7 @@ Instructions for AI coding agents working in this repository.
 
 ## What this repo is
 
-A static art portfolio site built with Astro and Tailwind CSS, deployed to GitHub Pages at `addie-art.com`. Content is managed via Pages CMS (`.pages.yml`).
+A static art portfolio site built with Astro and Tailwind CSS, deployed to Cloudflare Pages at `addie-art.com`. Content is managed via Pages CMS (`.pages.yml`).
 
 ---
 
@@ -17,16 +17,14 @@ A static art portfolio site built with Astro and Tailwind CSS, deployed to GitHu
 | `src/content/artwork/*.json` | One file per artwork. Fields: `title`, `image`, `alt`, `order`. |
 | `src/content/pages/about.json` | About page bio text. |
 | `src/content/pages/contact.json` | Contact page intro text and Facebook URL. |
-| `src/content/settings.json` | Site title, tagline, commissions status. |
+| `src/data/settings.json` | Site title, tagline, commissions status. |
 | `src/content/config.ts` | Astro content collection Zod schemas — update if adding fields. |
 | `src/layouts/Default.astro` | Shared page shell: `<head>`, fonts, nav, `<slot />`. |
 | `src/pages/index.astro` | Gallery grid — reads all artwork entries sorted by `order`. |
 | `src/pages/about.astro` | About page — reads `about.json`. |
 | `src/pages/contact.astro` | Contact page — reads `contact.json`. |
 | `public/pics/` | Raw image files served at `/pics/<filename>`. |
-| `public/CNAME` | Custom domain (`addie-art.com`). Do not edit unless domain changes. |
 | `.pages.yml` | Pages CMS config — defines editable collections and media source. |
-| `.github/workflows/deploy.yml` | CI: build with Astro + deploy to GitHub Pages on push to `main`. |
 | `astro.config.mjs` | Astro config: `site` URL, integrations (Tailwind). |
 | `tailwind.config.mjs` | Tailwind content paths, Oswald font override. |
 
@@ -63,7 +61,7 @@ Edit `src/content/pages/about.json`, field `bio`.
 
 ### Toggle commissions open/closed
 
-Edit `src/content/settings.json`, field `commissions_open` (`true` / `false`).
+Edit `src/data/settings.json`, field `commissions_open` (`true` / `false`).
 
 ### Add a new field to artwork
 
@@ -87,4 +85,12 @@ There is no automated test suite. Verify pages render correctly with `npm run de
 
 ## Deployment
 
-The site auto-deploys on every push to `main` via GitHub Actions. Do not commit directly to `main` for experimental changes; use a feature branch and open a PR.
+Cloudflare Pages deploys automatically on every push to `main`. Do not commit directly to `main` for experimental changes; use a feature branch and open a PR.
+
+**Cloudflare Pages build settings:**
+
+| Setting | Value |
+|---|---|
+| Build command | `npm run build` |
+| Build output directory | `dist` |
+| Node version (env var) | `NODE_VERSION=22` |

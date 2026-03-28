@@ -13,8 +13,7 @@ Personal art portfolio and commission site for Addie, showcasing original cartoo
 | Static site generator | [Astro](https://astro.build) v4 |
 | CSS framework | [Tailwind CSS](https://tailwindcss.com) v3 via `@astrojs/tailwind` |
 | CMS | [Pages CMS](https://pagescms.org) — edits files in this repo via GitHub |
-| Hosting | GitHub Pages with custom domain |
-| CI/CD | GitHub Actions |
+| Hosting | Cloudflare Pages with custom domain |
 
 ---
 
@@ -22,20 +21,17 @@ Personal art portfolio and commission site for Addie, showcasing original cartoo
 
 ```
 .
-├── .github/
-│   └── workflows/
-│       └── deploy.yml        # GitHub Actions: build + deploy to gh-pages
 ├── public/
-│   ├── pics/                 # Artwork image files (managed via Pages CMS)
-│   └── CNAME                 # Custom domain: addie-art.com
+│   └── pics/                 # Artwork image files (managed via Pages CMS)
 ├── src/
 │   ├── content/
 │   │   ├── artwork/          # One JSON file per artwork (managed via Pages CMS)
 │   │   ├── pages/
-│   │   │   ├── about.json    # About page text (managed via Pages CMS)
+│   │   │   ├── about.json    # About page text
 │   │   │   └── contact.json  # Contact page text + Facebook URL
-│   │   ├── config.ts         # Astro content collection schema
-│   │   └── settings.json     # Site-wide settings (title, tagline, etc.)
+│   │   └── config.ts         # Astro content collection schema
+│   ├── data/
+│   │   └── settings.json     # Site-wide settings (title, tagline, commissions)
 │   ├── layouts/
 │   │   └── Default.astro     # Shared HTML shell, nav, fonts
 │   └── pages/
@@ -65,26 +61,17 @@ Requires Node.js 18+.
 
 ## Deployment
 
-Pushing to `main` triggers the GitHub Actions workflow (`.github/workflows/deploy.yml`) which:
+Cloudflare Pages deploys automatically on every push to `main`.
 
-1. Installs dependencies
-2. Runs `astro build`
-3. Uploads `dist/` to GitHub Pages
+**Cloudflare Pages build settings:**
 
-### Custom domain setup
+| Setting | Value |
+|---|---|
+| Build command | `npm run build` |
+| Build output directory | `dist` |
+| Node version (env var) | `NODE_VERSION=22` |
 
-`public/CNAME` contains `addie-art.com`. In your domain registrar, point the domain to GitHub Pages using either:
-
-- **Apex domain (`addie-art.com`):** Add `A` records pointing to GitHub's IP addresses:
-  ```
-  185.199.108.153
-  185.199.109.153
-  185.199.110.153
-  185.199.111.153
-  ```
-- **`www` subdomain:** Add a `CNAME` record pointing `www` → `<your-github-username>.github.io`
-
-In the GitHub repository settings → Pages, set the custom domain to `addie-art.com` and enable "Enforce HTTPS".
+Custom domain is managed in the Cloudflare Pages dashboard.
 
 ---
 
