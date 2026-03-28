@@ -11,8 +11,7 @@ content:
     type: collection
     path: src/content/artwork
     format: json
-    filename:
-      prefix: artwork-
+    filename: "{title}.json"
     view:
       fields: [title, image]
     fields:
