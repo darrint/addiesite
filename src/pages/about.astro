@@ -1,0 +1,9 @@
+---
+import Default from '../layouts/Default.astro';
+import about from '../content/pages/about.json';
+---
+
+<Default title="About — Addie's Art Show">
+  <h2 class="text-2xl font-semibold mb-4">About</h2>
+  <p class="text-lg leading-relaxed max-w-prose">{about.bio}</p>
+</Default>

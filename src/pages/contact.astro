@@ -1,0 +1,17 @@
+---
+import Default from '../layouts/Default.astro';
+import contact from '../content/pages/contact.json';
+---
+
+<Default title="Contact — Addie's Art Show">
+  <h2 class="text-2xl font-semibold mb-4">Contact</h2>
+  <p class="text-lg mb-8">{contact.intro}</p>
+  <a
+    href={contact.facebook_url}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="inline-block bg-gray-800 text-white text-xl font-semibold px-8 py-4 rounded-lg shadow hover:bg-gray-700 transition-colors"
+  >
+    Get a Drawing!
+  </a>
+</Default>

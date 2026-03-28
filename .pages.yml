@@ -1,0 +1,82 @@
+# Pages CMS configuration for Addie's Art Show
+# https://pagescms.org
+
+media:
+  input: public/pics
+  output: /pics
+
+content:
+  - name: artwork
+    label: Artwork
+    type: collection
+    path: src/content/artwork
+    format: json
+    filename:
+      prefix: artwork-
+    view:
+      fields: [title, image]
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: image
+        label: Image
+        type: image
+        required: true
+      - name: alt
+        label: Alt text
+        type: string
+        required: true
+      - name: order
+        label: Display order
+        type: number
+        default: 50
+
+  - name: pages
+    label: Pages
+    type: group
+    items:
+      - name: about
+        label: About page
+        type: file
+        path: src/content/pages/about.json
+        format: json
+        fields:
+          - name: bio
+            label: Bio text
+            type: text
+            required: true
+
+      - name: contact
+        label: Contact page
+        type: file
+        path: src/content/pages/contact.json
+        format: json
+        fields:
+          - name: intro
+            label: Intro text
+            type: text
+          - name: facebook_url
+            label: Facebook URL
+            type: string
+
+  - name: settings
+    label: Site settings
+    type: file
+    path: src/data/settings.json
+    format: json
+    fields:
+      - name: site_title
+        label: Site title
+        type: string
+      - name: tagline
+        label: Tagline
+        type: string
+      - name: commissions_open
+        label: Commissions open
+        type: boolean
+        default: true
+      - name: commission_text
+        label: Commission text
+        type: string

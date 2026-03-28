@@ -1,0 +1,30 @@
+---
+import { getCollection } from 'astro:content';
+import Default from '../layouts/Default.astro';
+import settings from '../data/settings.json';
+
+const artworks = await getCollection('artwork');
+const sorted = artworks.sort((a, b) => a.data.order - b.data.order);
+---
+
+<Default>
+  <p class="text-center text-xl mb-2">{settings.tagline}</p>
+  {settings.commissions_open && (
+    <p class="text-center text-lg font-semibold mb-8">{settings.commission_text}</p>
+  )}
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    {sorted.map((art) => (
+      <figure class="overflow-hidden rounded shadow">
+        <img
+          src={art.data.image}
+          alt={art.data.alt}
+          loading="lazy"
+          decoding="async"
+          class="w-full h-64 object-cover"
+        />
+        <figcaption class="text-center text-sm p-2 text-gray-600">{art.data.title}</figcaption>
+      </figure>
+    ))}
+  </div>
+</Default>
